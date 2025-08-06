@@ -1,27 +1,29 @@
 import React, {useState} from "react";
+import {Counter} from "./components/Counter";
+import {ClassCounter} from "./components/ClassCounter";
+import './styles/App.css'
+import PostItem from "./components/PostItem";
+import PostList from "./components/PostList";
+// import PostItem from "./components/PostItem";
 
 function App() {
-    const [likes, setLikes] = useState(0)
-    const [value, setValue] = useState('text')
 
-    function increment() {
-        setLikes(likes + 1)
-    }
+  const [posts, setPosts] = useState( [
+    {id: 1, title: 'JavaScript', body: 'Description'},
+    {id: 2, title: 'JavaScript2', body: 'Description'},
+    {id: 3, title: 'JavaScript3', body: 'Description'},
+    ]
 
-    function decrement() {
-        setLikes( likes - 1)
-    }
+  )
+
   return (
     <div className="App">
-        <h1>{likes}</h1>
-        <h1>{value}</h1>
-        <input
-            type="text"
-            value={value}
-            onChange={e => setValue(e.target.value)}
-        />
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
+      <form>
+        <input type="text" placeholder='title of post'/>
+        <input type="text" placeholder='Description'/>
+        <button>Create post</button>
+      </form>
+      <PostList posts={posts} title='List of posts 1'/>
     </div>
   );
 }
